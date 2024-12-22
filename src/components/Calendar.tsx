@@ -23,17 +23,13 @@ const unavailableDates = [
 export function DateRangePicker({
   className,
   onSelect,
+  selected,
 }: {
   className?: string;
   onSelect?: (range: DateRange | undefined) => void;
+  selected?: DateRange;
 }) {
-  const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(),
-    to: addDays(new Date(), 3),
-  });
-
   const handleSelect = (range: DateRange | undefined) => {
-    setDate(range);
     if (onSelect) onSelect(range);
   };
 
@@ -46,18 +42,18 @@ export function DateRangePicker({
             variant={"outline"}
             className={cn(
               "w-full justify-start text-left font-normal",
-              !date && "text-muted-foreground"
+              !selected && "text-muted-foreground"
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {date?.from ? (
-              date.to ? (
+            {selected?.from ? (
+              selected.to ? (
                 <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
+                  {format(selected.from, "LLL dd, y")} -{" "}
+                  {format(selected.to, "LLL dd, y")}
                 </>
               ) : (
-                format(date.from, "LLL dd, y")
+                format(selected.from, "LLL dd, y")
               )
             ) : (
               <span>Pick a date</span>
@@ -68,8 +64,8 @@ export function DateRangePicker({
           <Calendar
             initialFocus
             mode="range"
-            defaultMonth={date?.from}
-            selected={date}
+            defaultMonth={selected?.from}
+            selected={selected}
             onSelect={handleSelect}
             numberOfMonths={2}
             disabled={unavailableDates}

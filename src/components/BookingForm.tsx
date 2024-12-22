@@ -19,7 +19,7 @@ export function BookingForm() {
     });
   };
 
-  const pricePerNight = 150; // Example price
+  const pricePerNight = 220; // Changed to 220 BGN
   const numberOfNights = selectedRange?.from && selectedRange?.to
     ? Math.ceil((selectedRange.to.getTime() - selectedRange.from.getTime()) / (1000 * 60 * 60 * 24))
     : 0;
@@ -29,7 +29,10 @@ export function BookingForm() {
     <form onSubmit={handleSubmit} className="space-y-6 p-6 bg-white rounded-lg shadow-lg max-w-md mx-auto">
       <div className="space-y-2">
         <Label htmlFor="dates">Select Dates</Label>
-        <DateRangePicker onSelect={setSelectedRange} />
+        <DateRangePicker 
+          onSelect={setSelectedRange}
+          selected={selectedRange}
+        />
       </div>
 
       <div className="space-y-2">
@@ -47,13 +50,13 @@ export function BookingForm() {
       {selectedRange?.from && selectedRange?.to && (
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span>${pricePerNight} × {numberOfNights} nights</span>
-            <span>${totalPrice}</span>
+            <span>{pricePerNight} BGN × {numberOfNights} nights</span>
+            <span>{totalPrice} BGN</span>
           </div>
           <div className="border-t pt-2">
             <div className="flex justify-between font-semibold">
               <span>Total</span>
-              <span>${totalPrice}</span>
+              <span>{totalPrice} BGN</span>
             </div>
           </div>
         </div>
