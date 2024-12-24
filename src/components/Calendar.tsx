@@ -105,7 +105,6 @@ export function DateRangePicker({
             onSelect={handleSelect}
             numberOfMonths={2}
             disabled={unavailableDates}
-            disabledDays={unavailableDates}
             className="rounded-md border"
           />
         </PopoverContent>
