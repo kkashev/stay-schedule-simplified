@@ -12,33 +12,36 @@ export type Database = {
       bookings: {
         Row: {
           created_at: string
+          email: string | null
           end_date: string
           guest_count: number
           id: string
           start_date: string
           status: string
           total_price: number
-          user_id: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string
+          email?: string | null
           end_date: string
           guest_count: number
           id?: string
           start_date: string
           status?: string
           total_price: number
-          user_id: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string
+          email?: string | null
           end_date?: string
           guest_count?: number
           id?: string
           start_date?: string
           status?: string
           total_price?: number
-          user_id?: string
+          user_id?: string | null
         }
         Relationships: []
       }
