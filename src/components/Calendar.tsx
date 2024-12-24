@@ -1,24 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { DateRange } from "react-day-picker";
-import { addDays, format } from "date-fns";
+import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-
-// Mock data for unavailable dates
-const unavailableDates = [
-  new Date(2024, 3, 10),
-  new Date(2024, 3, 11),
-  new Date(2024, 3, 12),
-  new Date(2024, 3, 20),
-  new Date(2024, 3, 21),
-];
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { supabase } from "@/integrations/supabase/client";
 
 export function DateRangePicker({
   className,
@@ -29,6 +17,39 @@ export function DateRangePicker({
   onSelect?: (range: DateRange | undefined) => void;
   selected?: DateRange;
 }) {
+  const [unavailableDates, setUnavailableDates] = useState<Date[]>([]);
+
+  useEffect(() => {
+    const fetchBookedDates = async () => {
+      const { data, error } = await supabase
+        .from('bookings')
+        .select('start_date, end_date')
+        .eq('status', 'approved');
+
+      if (error) {
+        console.error('Error fetching booked dates:', error);
+        return;
+      }
+
+      const bookedDates: Date[] = [];
+      data.forEach(booking => {
+        const start = new Date(booking.start_date);
+        const end = new Date(booking.end_date);
+        
+        // Add all dates between start and end to the bookedDates array
+        const current = new Date(start);
+        while (current <= end) {
+          bookedDates.push(new Date(current));
+          current.setDate(current.getDate() + 1);
+        }
+      });
+
+      setUnavailableDates(bookedDates);
+    };
+
+    fetchBookedDates();
+  }, []);
+
   const handleSelect = (range: DateRange | undefined) => {
     if (onSelect) onSelect(range);
   };
