@@ -51,6 +51,21 @@ export function DateRangePicker({
   }, []);
 
   const handleSelect = (range: DateRange | undefined) => {
+    // Don't allow selection if any date in the range is unavailable
+    if (range?.from && range?.to) {
+      const current = new Date(range.from);
+      while (current <= range.to) {
+        if (unavailableDates.some(date => 
+          date.getFullYear() === current.getFullYear() &&
+          date.getMonth() === current.getMonth() &&
+          date.getDate() === current.getDate()
+        )) {
+          return; // Don't update if any date is unavailable
+        }
+        current.setDate(current.getDate() + 1);
+      }
+    }
+    
     if (onSelect) onSelect(range);
   };
 
@@ -90,6 +105,7 @@ export function DateRangePicker({
             onSelect={handleSelect}
             numberOfMonths={2}
             disabled={unavailableDates}
+            disabledDays={unavailableDates}
             className="rounded-md border"
           />
         </PopoverContent>
