@@ -10,9 +10,38 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const checkAdmin = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        navigate('/');
+        return;
+      }
+
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('is_admin')
+        .eq('id', session.user.id)
+        .single();
+
+      if (!profile?.is_admin) {
+        navigate('/');
+        return;
+      }
+
+      setIsAdmin(true);
+    };
+
+    checkAdmin();
+  }, [navigate]);
 
   const { data: bookings, refetch } = useQuery({
     queryKey: ['bookings'],
@@ -25,6 +54,7 @@ const Admin = () => {
       if (error) throw error;
       return data;
     },
+    enabled: isAdmin, // Only fetch if user is admin
   });
 
   const handleStatusUpdate = async (id: string, newStatus: string) => {
@@ -48,6 +78,10 @@ const Admin = () => {
     });
     refetch();
   };
+
+  if (!isAdmin) {
+    return <div className="container mx-auto py-10">Loading...</div>;
+  }
 
   return (
     <div className="container mx-auto py-10">
