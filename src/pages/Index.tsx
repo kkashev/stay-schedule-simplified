@@ -64,15 +64,26 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="relative h-[30vh] bg-gray-900">
-        <div className="absolute top-4 right-4 z-10">
+        <div className="absolute top-4 right-4 z-10 flex gap-2">
           {session ? (
-            <Button 
-              variant="outline" 
-              onClick={() => supabase.auth.signOut()}
-              className="bg-white hover:bg-gray-100"
-            >
-              Sign Out
-            </Button>
+            <>
+              {isAdmin && (
+                <Button 
+                  variant="outline" 
+                  onClick={() => window.location.href = '/admin'}
+                  className="bg-white hover:bg-gray-100"
+                >
+                  Admin Panel
+                </Button>
+              )}
+              <Button 
+                variant="outline" 
+                onClick={() => supabase.auth.signOut()}
+                className="bg-white hover:bg-gray-100"
+              >
+                Sign Out
+              </Button>
+            </>
           ) : (
             <Button 
               variant="outline" 
@@ -125,7 +136,15 @@ const Index = () => {
         {isAdmin && (
           <div className="mb-8 p-4 bg-white rounded-lg shadow">
             <h2 className="text-xl font-semibold mb-4">Административен панел</h2>
-            <ImageUpload />
+            <div className="flex gap-4 items-center">
+              <ImageUpload />
+              <Button
+                variant="outline"
+                onClick={() => window.location.href = '/admin'}
+              >
+                Управление на резервации
+              </Button>
+            </div>
           </div>
         )}
         

@@ -54,7 +54,7 @@ const Admin = () => {
       if (error) throw error;
       return data;
     },
-    enabled: isAdmin, // Only fetch if user is admin
+    enabled: isAdmin,
   });
 
   const handleStatusUpdate = async (id: string, newStatus: string) => {
@@ -85,16 +85,23 @@ const Admin = () => {
 
   return (
     <div className="container mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-6">Booking Management</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Booking Management</h1>
+        <Button onClick={() => navigate('/')} variant="outline">
+          Back to Home
+        </Button>
+      </div>
       
       <div className="rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead>Email</TableHead>
+              <TableHead>Phone</TableHead>
               <TableHead>Dates</TableHead>
               <TableHead>Guests</TableHead>
               <TableHead>Total Price</TableHead>
+              <TableHead>Submitted</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
@@ -103,11 +110,21 @@ const Admin = () => {
             {bookings?.map((booking) => (
               <TableRow key={booking.id}>
                 <TableCell>{booking.email}</TableCell>
+                <TableCell>{booking.phone_number || '-'}</TableCell>
                 <TableCell>
                   {new Date(booking.start_date).toLocaleDateString()} - {new Date(booking.end_date).toLocaleDateString()}
                 </TableCell>
                 <TableCell>{booking.guest_count}</TableCell>
                 <TableCell>{booking.total_price} BGN</TableCell>
+                <TableCell>
+                  {new Date(booking.created_at).toLocaleDateString('bg-BG', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </TableCell>
                 <TableCell>
                   <span className={`capitalize ${
                     booking.status === 'approved' ? 'text-green-600' :
