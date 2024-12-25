@@ -16,6 +16,7 @@ export type Database = {
           end_date: string
           guest_count: number
           id: string
+          phone_number: string | null
           start_date: string
           status: string
           total_price: number
@@ -27,6 +28,7 @@ export type Database = {
           end_date: string
           guest_count: number
           id?: string
+          phone_number?: string | null
           start_date: string
           status?: string
           total_price: number
@@ -38,6 +40,7 @@ export type Database = {
           end_date?: string
           guest_count?: number
           id?: string
+          phone_number?: string | null
           start_date?: string
           status?: string
           total_price?: number
