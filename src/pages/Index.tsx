@@ -43,7 +43,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="relative h-[50vh] bg-gray-900">
+      <div className="relative h-[30vh] bg-gray-900">
         <div className="absolute top-4 right-4 z-10">
           {session ? (
             <Button 

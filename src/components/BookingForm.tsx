@@ -27,8 +27,8 @@ export function BookingForm() {
 
     if (!selectedRange?.from || !selectedRange?.to || !email) {
       toast({
-        title: "Error",
-        description: "Please fill in all required fields",
+        title: "Грешка",
+        description: "Моля, попълнете всички задължителни полета",
         variant: "destructive",
       });
       return;
@@ -58,8 +58,8 @@ export function BookingForm() {
     if (error) {
       console.error('Error submitting booking:', error);
       toast({
-        title: "Error",
-        description: "There was an error submitting your booking. Please try again.",
+        title: "Грешка",
+        description: "Възникна грешка при изпращането на резервацията. Моля, опитайте отново.",
         variant: "destructive",
       });
       return;
@@ -84,7 +84,7 @@ export function BookingForm() {
     <>
       <form onSubmit={handleSubmit} className="space-y-6 p-6 bg-white rounded-lg shadow-lg max-w-md mx-auto">
         <div className="space-y-2">
-          <Label htmlFor="dates">Select Dates</Label>
+          <Label htmlFor="dates">Изберете дати</Label>
           <DateRangePicker 
             onSelect={setSelectedRange}
             selected={selectedRange}
@@ -92,7 +92,7 @@ export function BookingForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="email">Email Address</Label>
+          <Label htmlFor="email">Имейл адрес</Label>
           <Input
             id="email"
             type="email"
@@ -104,7 +104,7 @@ export function BookingForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="phone">Phone Number</Label>
+          <Label htmlFor="phone">Телефонен номер</Label>
           <Input
             id="phone"
             type="tel"
@@ -115,12 +115,12 @@ export function BookingForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="guests">Number of Guests</Label>
+          <Label htmlFor="guests">Брой гости</Label>
           <Input
             id="guests"
             type="number"
             min="1"
-            max="4"
+            max="6"
             value={guests}
             onChange={(e) => setGuests(e.target.value)}
           />
@@ -129,35 +129,35 @@ export function BookingForm() {
         {selectedRange?.from && selectedRange?.to && (
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
-              <span>{pricePerNight} BGN × {numberOfNights} nights</span>
-              <span>{totalPrice} BGN</span>
+              <span>{pricePerNight} лв × {numberOfNights} нощувки</span>
+              <span>{totalPrice} лв</span>
             </div>
             <div className="border-t pt-2">
               <div className="flex justify-between font-semibold">
-                <span>Total</span>
-                <span>{totalPrice} BGN</span>
+                <span>Общо</span>
+                <span>{totalPrice} лв</span>
               </div>
             </div>
           </div>
         )}
 
         <Button type="submit" className="w-full bg-[#FF385C] hover:bg-[#E31C5F]">
-          Request to Book
+          Заявка за резервация
         </Button>
       </form>
 
       <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Booking Request Submitted!</DialogTitle>
+            <DialogTitle>Заявката е изпратена успешно!</DialogTitle>
             <DialogDescription className="pt-4 space-y-3">
-              <p>Thank you for your booking request. We have received it successfully.</p>
-              <p>We will review your request and get in touch with you via email or phone to confirm your booking.</p>
-              <p>If you have any questions in the meantime, please don't hesitate to contact us.</p>
+              <p>Благодарим ви за заявката. Получихме я успешно.</p>
+              <p>Ще прегледаме вашата заявка и ще се свържем с вас по имейл или телефон за потвърждение на резервацията.</p>
+              <p>Ако имате въпроси междувременно, не се колебайте да се свържете с нас.</p>
             </DialogDescription>
           </DialogHeader>
           <Button onClick={() => setShowConfirmation(false)} className="mt-4">
-            Close
+            Затвори
           </Button>
         </DialogContent>
       </Dialog>
