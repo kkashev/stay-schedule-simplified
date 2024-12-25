@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const content = {
-  title: "Modern City Apartment",
-  subtitle: "Perfect location, stunning views",
-  aboutTitle: "About this space",
+  title: "Pino Apartment Pamporovo",
+  subtitle: "Зимната приказка, достъпна за цялото семейство",
+  aboutTitle: "Накратко за апартамента",
   aboutDescription: "Welcome to our stunning city apartment! This modern space offers the perfect blend of comfort and style, featuring contemporary furnishings, a fully equipped kitchen, and breathtaking city views. Located in the heart of downtown, you'll be steps away from restaurants, shops, and major attractions.",
   amenitiesTitle: "Amenities",
   amenities: [
