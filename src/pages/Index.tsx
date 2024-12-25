@@ -12,12 +12,13 @@ const content = {
   aboutDescription: "Welcome to our stunning city apartment! This modern space offers the perfect blend of comfort and style, featuring contemporary furnishings, a fully equipped kitchen, and breathtaking city views. Located in the heart of downtown, you'll be steps away from restaurants, shops, and major attractions.",
   amenitiesTitle: "Amenities",
   amenities: [
-    "✨ Wifi",
-    "🚗 Free parking",
-    "❄️ Air conditioning",
-    "🏊‍♂️ Pool access",
-    "📺 Smart TV",
-    "🧺 Washer/Dryer"
+    "📶 Бърз Wi-Fi",
+    "🍳 Напълно оборудвана кухня",
+    "🧺 Пералня и сушилня",
+    "❄️ Голям хладилник с фризер",
+    "☕ Кафе машина за капсули",
+    "🎮 PlayStation 4",
+    "📺 Netflix"
   ]
 };
 
