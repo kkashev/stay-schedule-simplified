@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { supabase } from "@/integrations/supabase/client";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function DateRangePicker({
   className,
@@ -18,6 +19,7 @@ export function DateRangePicker({
   selected?: DateRange;
 }) {
   const [unavailableDates, setUnavailableDates] = useState<Date[]>([]);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const fetchBookedDates = async () => {
@@ -103,7 +105,7 @@ export function DateRangePicker({
             defaultMonth={selected?.from}
             selected={selected}
             onSelect={handleSelect}
-            numberOfMonths={2}
+            numberOfMonths={isMobile ? 1 : 2}
             disabled={unavailableDates}
             className="rounded-md border"
           />
