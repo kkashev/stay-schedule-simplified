@@ -9,7 +9,7 @@ const content = {
   title: "Pino Apartment Pamporovo",
   subtitle: "Зимната приказка, достъпна за цялото семейство",
   aboutTitle: "Накратко за апартамента",
-  aboutDescription: "Welcome to our stunning city apartment! This modern space offers the perfect blend of comfort and style, featuring contemporary furnishings, a fully equipped kitchen, and breathtaking city views. Located in the heart of downtown, you'll be steps away from restaurants, shops, and major attractions.",
+  aboutDescription: "🏔 Добре дошли в сърцето на Пампорово! 🌲❄️Нашият уютен апартамент в комплекс Манастира 3 е идеалното място за вашата зимна почивка. Разположен директно на туристическата писта – Ski in/Ski out, и само на 100 метра от лифт Студенец - Снежанка, той е перфектен за ски приключения и релакс сред природата.",
   amenitiesTitle: "Amenities",
   amenities: [
     "📶 Бърз Wi-Fi",
