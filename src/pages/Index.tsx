@@ -4,6 +4,7 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { ImageUpload } from "@/components/ImageUpload";
 
 const content = {
   title: "Pino Apartment Pamporovo",
@@ -26,20 +27,39 @@ const content = {
 const Index = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [session, setSession] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
+      if (session?.user) {
+        checkIfAdmin(session.user.id);
+      }
     });
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      if (session?.user) {
+        checkIfAdmin(session.user.id);
+      } else {
+        setIsAdmin(false);
+      }
     });
 
     return () => subscription.unsubscribe();
   }, []);
+
+  const checkIfAdmin = async (userId: string) => {
+    const { data } = await supabase
+      .from('profiles')
+      .select('is_admin')
+      .eq('id', userId)
+      .single();
+    
+    setIsAdmin(data?.is_admin || false);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -102,6 +122,13 @@ const Index = () => {
       )}
 
       <div className="max-w-7xl mx-auto px-4 py-12">
+        {isAdmin && (
+          <div className="mb-8 p-4 bg-white rounded-lg shadow">
+            <h2 className="text-xl font-semibold mb-4">Административен панел</h2>
+            <ImageUpload />
+          </div>
+        )}
+        
         <div className="grid md:grid-cols-2 gap-12">
           <div className="space-y-6">
             <div>
