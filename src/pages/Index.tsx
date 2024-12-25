@@ -95,7 +95,7 @@ const Index = () => {
           )}
         </div>
         <img
-          src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267"
+          src="https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/0.037049310533655566.jpg"
           alt={content.title}
           className="w-full h-full object-cover opacity-80"
         />
