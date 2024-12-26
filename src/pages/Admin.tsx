@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 import {
   Table,
   TableBody,
@@ -17,12 +19,16 @@ const Admin = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
+  const [session, setSession] = useState(null);
+  const [showAuth, setShowAuth] = useState(false);
 
   useEffect(() => {
     const checkAdmin = async () => {
       const { data: { session } } = await supabase.auth.getSession();
+      setSession(session);
+      
       if (!session) {
-        navigate('/');
+        setShowAuth(true);
         return;
       }
 
@@ -38,9 +44,24 @@ const Admin = () => {
       }
 
       setIsAdmin(true);
+      setShowAuth(false);
     };
 
     checkAdmin();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      if (!session) {
+        setShowAuth(true);
+        setIsAdmin(false);
+      } else {
+        checkAdmin();
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, [navigate]);
 
   const { data: bookings, refetch } = useQuery({
@@ -79,6 +100,20 @@ const Admin = () => {
     refetch();
   };
 
+  if (showAuth) {
+    return (
+      <div className="container max-w-md mx-auto py-10">
+        <h1 className="text-2xl font-bold mb-6 text-center">Admin Login</h1>
+        <Auth
+          supabaseClient={supabase}
+          appearance={{ theme: ThemeSupa }}
+          providers={[]}
+          redirectTo={window.location.origin + '/admin'}
+        />
+      </div>
+    );
+  }
+
   if (!isAdmin) {
     return <div className="container mx-auto py-10">Loading...</div>;
   }
@@ -87,9 +122,17 @@ const Admin = () => {
     <div className="container mx-auto py-10">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Booking Management</h1>
-        <Button onClick={() => navigate('/')} variant="outline">
-          Back to Home
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={() => navigate('/')} variant="outline">
+            Back to Home
+          </Button>
+          <Button 
+            variant="outline" 
+            onClick={() => supabase.auth.signOut()}
+          >
+            Sign Out
+          </Button>
+        </div>
       </div>
       
       <div className="rounded-md border">
