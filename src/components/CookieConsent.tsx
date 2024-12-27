@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Link } from "react-router-dom";
 
 export function CookieConsent() {
   const [open, setOpen] = useState(false);
@@ -41,6 +42,19 @@ export function CookieConsent() {
               <li>Измерваме ефективността на сайта</li>
               <li>Подобряваме функционалността</li>
             </ul>
+            <div className="mt-4 text-sm">
+              <p>
+                За повече информация, моля прочетете нашата{" "}
+                <Link to="/cookie-policy" className="text-blue-600 hover:underline" onClick={() => setOpen(false)}>
+                  Политика за бисквитките
+                </Link>
+                {" "}и{" "}
+                <Link to="/privacy-policy" className="text-blue-600 hover:underline" onClick={() => setOpen(false)}>
+                  Политика за поверителност
+                </Link>
+                .
+              </p>
+            </div>
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="sm:justify-start gap-2">
