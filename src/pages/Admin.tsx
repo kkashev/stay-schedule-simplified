@@ -9,9 +9,9 @@ import { BookingList } from "@/components/BookingList";
 
 const Admin = () => {
   const navigate = useNavigate();
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [session, setSession] = useState(null);
-  const [showAuth, setShowAuth] = useState(false);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [session, setSession] = useState<any>(null);
+  const [showAuth, setShowAuth] = useState<boolean>(true);
 
   useEffect(() => {
     const checkAdmin = async () => {

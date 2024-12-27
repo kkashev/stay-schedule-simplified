@@ -78,7 +78,10 @@ const Index = () => {
               {/* Logo placeholder - replace with actual logo */}
               <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-500 to-purple-500" />
             </div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-4">
+              <h1 className="text-3xl font-bold text-gray-900">
+                {content.title}
+              </h1>
               {session && isAdmin && (
                 <Button 
                   variant="outline" 
@@ -90,22 +93,7 @@ const Index = () => {
               )}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Hero Section */}
-      <div className="relative h-[50vh] bg-gray-900">
-        <img
-          src="https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/0.037049310533655566.jpg"
-          alt={content.title}
-          className="w-full h-full object-cover opacity-90"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">
-            {content.title}
-          </h1>
-          <p className="text-xl opacity-90">
+          <p className="mt-4 text-xl text-gray-600">
             {content.subtitle}
           </p>
         </div>
