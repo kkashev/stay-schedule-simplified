@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ImageUpload } from "@/components/ImageUpload";
+import { CookieConsent } from "@/components/CookieConsent";
 
 const content = {
   title: "Pino Apartment Pamporovo",
@@ -128,6 +129,7 @@ const Index = () => {
           </div>
         </div>
       </div>
+      <CookieConsent />
     </div>
   );
 };
