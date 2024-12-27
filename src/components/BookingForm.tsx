@@ -13,6 +13,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { bookingRequestTemplate } from "@/utils/emailTemplates";
 
 export function BookingForm() {
   const [selectedRange, setSelectedRange] = useState<DateRange>();
@@ -65,24 +66,19 @@ export function BookingForm() {
       return;
     }
 
-    // Send confirmation email
+    // Send confirmation email using the new template
     try {
+      const emailTemplate = bookingRequestTemplate({
+        startDate: selectedRange.from,
+        endDate: selectedRange.to,
+        guests,
+        totalPrice
+      });
+
       const emailResponse = await supabase.functions.invoke('send-email', {
         body: {
           to: [email],
-          subject: "Потвърждение за заявка за резервация - Pino Apartment",
-          html: `
-            <h2>Благодарим за вашата заявка!</h2>
-            <p>Получихме вашата заявка за резервация със следните детайли:</p>
-            <ul>
-              <li>Настаняване: ${selectedRange.from.toLocaleDateString('bg-BG')}</li>
-              <li>Напускане: ${selectedRange.to.toLocaleDateString('bg-BG')}</li>
-              <li>Брой гости: ${guests}</li>
-              <li>Обща цена: ${totalPrice} лв</li>
-            </ul>
-            <p>Ще прегледаме вашата заявка и ще се свържем с вас скоро за потвърждение.</p>
-            <p>Поздрави,<br>Екипът на Pino Apartment</p>
-          `
+          ...emailTemplate
         }
       });
 
