@@ -9,8 +9,16 @@ import { Footer } from "@/components/Footer";
 const content = {
   title: "Pino Apartment Pamporovo",
   subtitle: "Зимната приказка, достъпна за цялото семейство",
-  aboutTitle: "За апартамента",
-  aboutDescription: "Нашият уютен апартамент в комплекс Манастира 3 е идеалното място за вашата зимна почивка. Разположен директно на туристическата писта – Ski in/Ski out, и само на 100 метра от лифт Студенец - Снежанка, той е перфектен за ски приключения и релакс сред природата.\n\nАпартаментът разполага с 3 стаи и 2 бани. Максимален капацитет -  6 души.",
+  apartmentInfo: [
+    "📍 Директно на писта Студенец (Ski in/Ski out)",
+    "🏔️ 100м от лифт Студенец-Снежанка",
+    "🏘️ Комплекс Манастира 3",
+    "👥 Максимален капацитет: 6 души",
+    "🛏️ 3 стаи",
+    "🚿 2 бани",
+    "⏰ Минимален престой: 3 нощувки",
+    "⭐ Напълно обзаведен",
+  ],
   amenitiesTitle: "Удобства",
   amenities: [
     "📶 Бърз Wi-Fi",
@@ -62,22 +70,35 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="relative h-[30vh] bg-gray-900">
-        <div className="absolute top-4 right-4 z-10 flex gap-2">
-          {session && isAdmin && (
-            <Button 
-              variant="outline" 
-              onClick={() => window.location.href = '/admin'}
-              className="bg-white hover:bg-gray-100"
-            >
-              Admin Panel
-            </Button>
-          )}
+      {/* Header Section */}
+      <div className="relative bg-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <div className="w-24 h-24 bg-gray-200 rounded-full">
+              {/* Logo placeholder - replace with actual logo */}
+              <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-500 to-purple-500" />
+            </div>
+            <div className="flex gap-2">
+              {session && isAdmin && (
+                <Button 
+                  variant="outline" 
+                  onClick={() => window.location.href = '/admin'}
+                  className="bg-white hover:bg-gray-100"
+                >
+                  Admin Panel
+                </Button>
+              )}
+            </div>
+          </div>
         </div>
+      </div>
+
+      {/* Hero Section */}
+      <div className="relative h-[50vh] bg-gray-900">
         <img
           src="https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/0.037049310533655566.jpg"
           alt={content.title}
-          className="w-full h-full object-cover opacity-80"
+          className="w-full h-full object-cover opacity-90"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
@@ -107,19 +128,25 @@ const Index = () => {
         )}
         
         <div className="grid md:grid-cols-2 gap-12">
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div>
-              <h2 className="text-2xl font-semibold mb-4">{content.aboutTitle}</h2>
-              <p className="text-gray-600 leading-relaxed">
-                {content.aboutDescription}
-              </p>
+              <h2 className="text-2xl font-semibold mb-6">За апартамента</h2>
+              <ul className="grid grid-cols-1 gap-4 text-gray-600">
+                {content.apartmentInfo.map((info, index) => (
+                  <li key={index} className="flex items-center text-lg">
+                    {info}
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold mb-3">{content.amenitiesTitle}</h3>
-              <ul className="grid grid-cols-2 gap-2 text-gray-600">
+              <h3 className="text-xl font-semibold mb-4">{content.amenitiesTitle}</h3>
+              <ul className="grid grid-cols-2 gap-3 text-gray-600">
                 {content.amenities.map((amenity, index) => (
-                  <li key={index}>{amenity}</li>
+                  <li key={index} className="flex items-center">
+                    {amenity}
+                  </li>
                 ))}
               </ul>
             </div>
