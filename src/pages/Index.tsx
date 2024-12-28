@@ -71,7 +71,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header Section with Hero Image */}
-      <div className="relative h-[80vh] bg-gray-900">
+      <div className="relative h-[48vh] bg-gray-900">
         <img
           src="https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/0.037049310533655566.jpg"
           alt="Hero"
@@ -133,7 +133,7 @@ const Index = () => {
           <div className="space-y-8">
             <div>
               <h2 className="text-2xl font-semibold mb-6">За апартамента</h2>
-              <ul className="grid grid-cols-1 gap-4 text-gray-600">
+              <ul className="grid grid-cols-2 gap-3 text-gray-600">
                 {content.apartmentInfo.map((info, index) => (
                   <li key={index} className="flex items-center text-lg">
                     {info}
