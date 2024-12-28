@@ -69,33 +69,47 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header Section */}
-      <div className="relative bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div className="w-24 h-24 bg-gray-200 rounded-full">
-              {/* Logo placeholder - replace with actual logo */}
-              <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-500 to-purple-500" />
-            </div>
-            <div className="flex items-center gap-4">
-              <h1 className="text-3xl font-bold text-gray-900">
-                {content.title}
-              </h1>
+    <div className="min-h-screen bg-white">
+      {/* Header Section with Hero Image */}
+      <div className="relative h-[80vh] bg-gray-900">
+        <img
+          src="https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/0.037049310533655566.jpg"
+          alt="Hero"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+        
+        {/* Navigation Bar */}
+        <div className="absolute top-0 left-0 right-0 z-10">
+          <div className="max-w-7xl mx-auto px-4 py-6">
+            <div className="flex items-center justify-between">
+              <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center">
+                {/* Logo placeholder */}
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-500" />
+              </div>
               {session && isAdmin && (
                 <Button 
                   variant="outline" 
                   onClick={() => window.location.href = '/admin'}
-                  className="bg-white hover:bg-gray-100"
+                  className="bg-white/90 hover:bg-white"
                 >
                   Admin Panel
                 </Button>
               )}
             </div>
           </div>
-          <p className="mt-4 text-xl text-gray-600">
-            {content.subtitle}
-          </p>
+        </div>
+
+        {/* Hero Content */}
+        <div className="absolute bottom-0 left-0 right-0 p-12 text-white">
+          <div className="max-w-7xl mx-auto">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 tracking-tight">
+              {content.title}
+            </h1>
+            <p className="text-2xl font-light opacity-90 max-w-2xl">
+              {content.subtitle}
+            </p>
+          </div>
         </div>
       </div>
 
