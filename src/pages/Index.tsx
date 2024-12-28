@@ -134,19 +134,19 @@ const Index = () => {
               <h2 className="text-xl font-semibold mb-4">За апартамента</h2>
               <ul className="grid grid-cols-2 gap-3 text-gray-600">
                 {content.apartmentInfo.map((info, index) => (
-                  <li key={index} className="flex items-center text-lg">
-                    {info}
+                  <li key={index} className="flex items-start text-base">
+                    <span className="inline-block">{info}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold mb-4">{content.amenitiesTitle}</h3>
+              <h2 className="text-xl font-semibold mb-4">{content.amenitiesTitle}</h2>
               <ul className="grid grid-cols-2 gap-3 text-gray-600">
                 {content.amenities.map((amenity, index) => (
-                  <li key={index} className="flex items-center">
-                    {amenity}
+                  <li key={index} className="flex items-start text-base">
+                    <span className="inline-block">{amenity}</span>
                   </li>
                 ))}
               </ul>
