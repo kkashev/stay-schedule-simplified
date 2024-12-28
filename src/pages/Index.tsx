@@ -11,8 +11,8 @@ const content = {
   subtitle: "Зимната приказка, достъпна за цялото семейство",
   apartmentInfo: [
     "📍 Ski in/Ski out",
-    "🏘️ Комплекс Манастира 3",
-    "👥 Максимален капацитет: 6 души",
+    "🏘️ Манастира 3",
+    "👥 До 6 души",
     "🛏️ 3 стаи",
     "🚿 1.5 бани",
     "⏰ Мин. 3 нощувки",
@@ -131,7 +131,7 @@ const Index = () => {
         <div className="grid md:grid-cols-2 gap-12">
           <div className="space-y-8">
             <div>
-              <h2 className="text-2xl font-semibold mb-6">За апартамента</h2>
+              <h2 className="text-xl font-semibold mb-4">За апартамента</h2>
               <ul className="grid grid-cols-2 gap-3 text-gray-600">
                 {content.apartmentInfo.map((info, index) => (
                   <li key={index} className="flex items-center text-lg">
