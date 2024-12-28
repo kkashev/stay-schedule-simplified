@@ -15,8 +15,8 @@ const content = {
     "👥 До 6 души",
     "🛏️ 3 стаи",
     "🚿 1.5 бани",
-    "⏰ Мин. 3 нощувки",
     "⭐ Напълно обзаведен",
+    "⏰ Мин. 3 нощувки",
   ],
   amenitiesTitle: "Удобства",
   amenities: [
@@ -134,8 +134,8 @@ const Index = () => {
               <h2 className="text-xl font-semibold mb-4">За апартамента</h2>
               <ul className="grid grid-cols-2 gap-3 text-gray-600">
                 {content.apartmentInfo.map((info, index) => (
-                  <li key={index} className="flex items-start text-base">
-                    <span className="inline-block">{info}</span>
+                  <li key={index} className="flex items-start text-base whitespace-nowrap">
+                    {info}
                   </li>
                 ))}
               </ul>
@@ -145,8 +145,8 @@ const Index = () => {
               <h2 className="text-xl font-semibold mb-4">{content.amenitiesTitle}</h2>
               <ul className="grid grid-cols-2 gap-3 text-gray-600">
                 {content.amenities.map((amenity, index) => (
-                  <li key={index} className="flex items-start text-base">
-                    <span className="inline-block">{amenity}</span>
+                  <li key={index} className="flex items-start text-base whitespace-nowrap">
+                    {amenity}
                   </li>
                 ))}
               </ul>
