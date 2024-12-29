@@ -12,63 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
-const content = {
-  title: "Pino Apartment Pamporovo",
-  subtitle: "Зимната приказка, достъпна за цялото семейство",
-  apartmentInfo: [
-    "📍 Ski in/Ski out",
-    "🏘️ Манастира 3",
-    "👥 До 6 души",
-    "🛏️ 3 стаи",
-    "🚿 1.5 бани",
-    "⭐ Напълно обзаведен",
-    "⏰ Мин. 3 нощувки",
-  ],
-  amenitiesTitle: "Удобства",
-  amenities: [
-    "📶 Бърз Wi-Fi",
-    "🍳 Оборудвана кухня",
-    "🧺 Пералня и сушилня",
-    "❄️ Хладилник",
-    "☕ Кафе машина",
-    "🎮 PlayStation",
-    "📺 Netflix",
-    "🅿️ Паркинг"
-  ],
-  photos: [
-    {
-      url: "https://images.unsplash.com/photo-1721322800607-8c38375eef04",
-      alt: "Просторна всекидневна с диван и маса",
-      description: "Модерна и уютна всекидневна"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
-      alt: "Изглед към планината",
-      description: "Панорамен изглед към Пампорово"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1439337153520-7082a56a81f4",
-      alt: "Интериор на апартамента",
-      description: "Модерен интериорен дизайн"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-      alt: "Околности",
-      description: "Красива природа наоколо"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1501854140801-50d01698950b",
-      alt: "Планински изглед",
-      description: "Невероятна гледка към планината"
-    },
-    {
-      url: "https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151",
-      alt: "Екстериор",
-      description: "Външен изглед на сградата"
-    }
-  ]
-};
+import { apartmentContent as content } from "@/content/apartmentContent";
 
 const Index = () => {
   const [session, setSession] = useState(null);
@@ -223,6 +167,18 @@ const Index = () => {
             <CarouselPrevious className="left-4" />
             <CarouselNext className="right-4" />
           </Carousel>
+        </div>
+
+        {/* Description Section */}
+        <div className="mt-24 max-w-4xl mx-auto">
+          <h2 className="text-3xl font-semibold mb-8 text-center">{content.description.title}</h2>
+          <div className="space-y-6">
+            {content.description.paragraphs.map((paragraph, index) => (
+              <p key={index} className="text-gray-600 leading-relaxed text-lg">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
       
