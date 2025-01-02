@@ -35,9 +35,22 @@ export function BookingForm() {
       return;
     }
 
+    // Convert dates to UTC to ensure consistent date handling
+    const startDate = new Date(Date.UTC(
+      selectedRange.from.getFullYear(),
+      selectedRange.from.getMonth(),
+      selectedRange.from.getDate()
+    ));
+
+    const endDate = new Date(Date.UTC(
+      selectedRange.to.getFullYear(),
+      selectedRange.to.getMonth(),
+      selectedRange.to.getDate()
+    ));
+
     const pricePerNight = 220;
     const numberOfNights = Math.ceil(
-      (selectedRange.to.getTime() - selectedRange.from.getTime()) / (1000 * 60 * 60 * 24)
+      (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
     );
     const totalPrice = numberOfNights * pricePerNight;
 
@@ -45,8 +58,8 @@ export function BookingForm() {
       .from('bookings')
       .insert([
         {
-          start_date: selectedRange.from.toISOString().split('T')[0],
-          end_date: selectedRange.to.toISOString().split('T')[0],
+          start_date: startDate.toISOString().split('T')[0],
+          end_date: endDate.toISOString().split('T')[0],
           guest_count: parseInt(guests),
           total_price: totalPrice,
           status: 'pending',
