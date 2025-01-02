@@ -38,11 +38,22 @@ export function DateRangePicker({
         const start = new Date(booking.start_date);
         const end = new Date(booking.end_date);
         
-        // Add all dates between start and end to the bookedDates array
-        const current = new Date(start);
-        while (current <= end) {
+        // Ensure we're working with UTC dates to avoid timezone issues
+        const current = new Date(Date.UTC(
+          start.getUTCFullYear(),
+          start.getUTCMonth(),
+          start.getUTCDate()
+        ));
+        
+        const endDate = new Date(Date.UTC(
+          end.getUTCFullYear(),
+          end.getUTCMonth(),
+          end.getUTCDate()
+        ));
+
+        while (current <= endDate) {
           bookedDates.push(new Date(current));
-          current.setDate(current.getDate() + 1);
+          current.setUTCDate(current.getUTCDate() + 1);
         }
       });
 
@@ -53,18 +64,28 @@ export function DateRangePicker({
   }, []);
 
   const handleSelect = (range: DateRange | undefined) => {
-    // Don't allow selection if any date in the range is unavailable
     if (range?.from && range?.to) {
-      const current = new Date(range.from);
-      while (current <= range.to) {
+      const current = new Date(Date.UTC(
+        range.from.getUTCFullYear(),
+        range.from.getUTCMonth(),
+        range.from.getUTCDate()
+      ));
+      
+      const endDate = new Date(Date.UTC(
+        range.to.getUTCFullYear(),
+        range.to.getUTCMonth(),
+        range.to.getUTCDate()
+      ));
+
+      while (current <= endDate) {
         if (unavailableDates.some(date => 
-          date.getFullYear() === current.getFullYear() &&
-          date.getMonth() === current.getMonth() &&
-          date.getDate() === current.getDate()
+          date.getUTCFullYear() === current.getUTCFullYear() &&
+          date.getUTCMonth() === current.getUTCMonth() &&
+          date.getUTCDate() === current.getUTCDate()
         )) {
-          return; // Don't update if any date is unavailable
+          return;
         }
-        current.setDate(current.getDate() + 1);
+        current.setUTCDate(current.getUTCDate() + 1);
       }
     }
     
