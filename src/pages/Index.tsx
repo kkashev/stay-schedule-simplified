@@ -61,7 +61,7 @@ const Index = () => {
             <div className="flex items-center justify-between">
               <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
                 <img 
-                  src="https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/logo.png" 
+                  src="https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/PAMPOROVO%20(1).png" 
                   alt="Pino Apartment Logo"
                   className="w-full h-full object-cover"
                 />
