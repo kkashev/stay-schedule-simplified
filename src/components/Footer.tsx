@@ -14,7 +14,7 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Контакти</h3>
             <p className="text-sm text-gray-600">
-              Email: info@pinoapt.com
+              Телефон: +359886391580
             </p>
           </div>
           <div>
