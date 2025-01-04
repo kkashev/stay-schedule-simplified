@@ -23,7 +23,7 @@ export const apartmentContent = {
   ],
   photos: [
     {
-      url: "https://images.unsplash.com/photo-1721322800607-8c38375eef04",
+      url: "https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/IMG_4047.jpg",
       alt: "Просторна всекидневна с диван и маса",
       description: "Модерна и уютна всекидневна"
     },
