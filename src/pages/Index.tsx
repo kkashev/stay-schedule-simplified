@@ -59,11 +59,11 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 z-10">
           <div className="max-w-7xl mx-auto px-4 py-6">
             <div className="flex items-center justify-between">
-              <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden">
+              <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center overflow-hidden p-2">
                 <img 
                   src="https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/PAMPOROVO%20(1).png" 
                   alt="Pino Apartment Logo"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
               {session && isAdmin && (
