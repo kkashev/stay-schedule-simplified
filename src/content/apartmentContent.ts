@@ -25,32 +25,32 @@ export const apartmentContent = {
     {
       url: "https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/IMG_4047.jpg",
       alt: "Просторна всекидневна с диван и маса",
-      description: "Модерна и уютна всекидневна"
+      description: "Всекидневна"
     },
     {
-      url: "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
-      alt: "Изглед към планината",
-      description: "Панорамен изглед към Пампорово"
+      url: "https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/IMG_4042.jpg",
+      alt: "Кухня",
+      description: "Кухня"
     },
     {
-      url: "https://images.unsplash.com/photo-1439337153520-7082a56a81f4",
-      alt: "Интериор на апартамента",
-      description: "Модерен интериорен дизайн"
+      url: "https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/IMG_4035.jpg",
+      alt: "Спалня 1",
+      description: "Спалня 1"
     },
     {
-      url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-      alt: "Околности",
-      description: "Красива природа наоколо"
+      url: "https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/IMG_4033.jpg",
+      alt: "Спалня 2",
+      description: "Спалня 2"
     },
     {
-      url: "https://images.unsplash.com/photo-1501854140801-50d01698950b",
-      alt: "Планински изглед",
-      description: "Невероятна гледка към планината"
+      url: "https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/IMG_4026.jpg",
+      alt: "Баня",
+      description: "Баня"
     },
     {
-      url: "https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151",
-      alt: "Екстериор",
-      description: "Външен изглед на сградата"
+      url: "https://mcszeyokeqgoxsrmbzit.supabase.co/storage/v1/object/public/images/IMG_4041.jpg",
+      alt: "Тоалетна",
+      description: "Тоалетна"
     }
   ],
   description: {
