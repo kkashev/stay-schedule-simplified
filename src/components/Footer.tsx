@@ -16,9 +16,6 @@ export function Footer() {
             <p className="text-sm text-gray-600">
               Телефон: +359886391580
             </p>
-            <p className="text-sm text-gray-600">
-              Email: kkashev@gmail.com
-            </p>
           </div>
           <div>
             <h3 className="font-semibold mb-4">Правна информация</h3>
